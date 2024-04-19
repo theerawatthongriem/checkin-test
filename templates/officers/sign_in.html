@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+
+{% block topic %}
+<div class="mt-10 justify-center flex ">
+    <p class="text-xl text-[#FFCC00] bg-[#102894] w-11/12 md:w-3/12 p-2 rounded-lg text-center shadow-md"> สำหรับเจ้าหน้าที่ </p>
+</div>
+{% endblock %}
+
+{% block form %}
+<div class="flex justify-center">
+    <form class="bg-white shadow-sm rounded-xl w-11/12 md:w-3/12 border my-5" action="" method="post">
+        {% csrf_token %}
+
+        <div class="flex justify-center p-5">
+            <img src="http://ubusac1.ubu.ac.th/v01/FrontEnd/SacV2/img/logo_th.png" alt="" class="h-24 w-full">
+        </div>
+        <div class="mb-4 px-5">
+            <input class="border rounded w-full p-2 text-gray-800 focus:outline-2 focus:outline-blue-500" id="username" name="username"
+                type="text" placeholder="UBU Wifi Username">
+        </div>
+
+        <div class="mb-4 px-5">
+
+            <input class="border rounded w-full p-2 text-gray-800 focus:outline-2 focus:outline-blue-500" id="password"
+                type="password" name="password" placeholder="UBU Wifi Password">
+
+        </div>
+
+        <div class="mb-4 px-5">
+            <button class="bg-blue-500 hover:bg-blue-700 w-full text-white p-2 rounded" type="submit">
+                Sign In
+            </button>
+        </div>
+
+        <div class="mb-4 px-5">
+            <a href="#" class="text-blue-500 w-full p-2 rounded">
+                ลืมรหัสผ่าน (Forgot Password) </a>
+        </div>
+
+
+    </form>
+
+</div>
+{% endblock %}

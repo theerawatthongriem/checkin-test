@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block topic %}
+<div class="justify-center flex mt-10">
+    <p class="text-xl w-11/12 md:w-2/12 p-2 rounded-lg text-center shadow-md"> เพิ่มประกาศกิจกรรม </p>
+</div>
+{% endblock %}
+
+{% block clock %}
+{% endblock %}
+
+{% block form %}
+<div class="flex justify-center">
+    <form class="bg-white shadow-sm rounded-xl w-11/12 md:w-3/12 border my-5" action="" method="post">
+        {% csrf_token %}
+
+        <div class="flex justify-center p-5">
+            <img src="http://ubusac1.ubu.ac.th/v01/FrontEnd/SacV2/img/logo_th.png" alt="" class="h-24 w-full">
+        </div>
+
+        <div class="mb-4 px-5">
+            {{ form|crispy }}
+        </div>
+        
+        
+        <div class="mb-4 px-5">
+            <button class="bg-blue-500 hover:bg-blue-700 w-full text-white p-2 rounded" type="submit">
+                Add Event
+            </button>
+        </div>
+
+
+
+
+    </form>
+
+</div>
+
+{% endblock %}

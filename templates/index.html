@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="th">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ubonratchathaniuniversity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="https://www.ubu.ac.th/images/Ubu_logo.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body style="font-family: 'Prompt', sans-serif;" class="bg-gray-100 flex flex-col h-screen justify-between">
+
+    {% for msg in messages %}
+    <div id="myModal" class="modal fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white rounded-lg p-8 max-w-sm w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">แจ้งเตือน</h3>
+                <button id="closeModal" class="text-gray-600 hover:text-gray-800"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p id="modalContent" class="text-sm text-gray-700">{{msg}}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+
+    <div class="p-2 shadow-md flex-wrap flex items-center justify-center md:justify-between bg-white">
+        <a href="/">
+            <div class="flex items-center">
+                <img src="https://www.ubu.ac.th/images/Ubu_logo.png" class="h-[60px] m-2 mx-4" alt="">
+                <div class="text-[#102894] text-xl">มหาวิทยาลัยอุบลราชธานี</div>
+            </div>
+        </a>
+
+        {% if user.is_authenticated %}
+        <div class="flex justify-center gap-x-5">
+            <a href="{% url 'sign_out' %}" class="p-1.5  text-black">{{ user.first_name }} {{ user.last_name}}</a>
+
+            <a href="{% url 'sign_out' %}"
+                class="p-1.5 bg-red-700 hover:bg-blue-900 text-white rounded-md shadow-md">ออกจากระบบ</a>
+        </div>
+        {% else %}
+        <div class="flex justify-center">
+            <a href="{% url 'sign_in' %}"
+                class="p-1.5 bg-blue-700 hover:bg-blue-900 text-white rounded-md shadow-md">สำหรับเจ้าหน้าที่</a>
+        </div>
+        {% endif %}
+
+    </div>
+
+
+    <main class="w-screen mb-10">
+        {% block topic %}
+        <div class="mt-10 justify-center flex">
+            <p class="text-xl">ระบบบันทึกการเข้าร่วมกิจกรรม</p>
+        </div>
+        {% endblock %}
+
+        {% block clock %}
+        <div class="justify-center flex mt-10">
+            <div class="bg-white w-11/12 md:w-3/12 rounded-xl shadow-md">
+                <div id="date" class="flex justify-center text-center mt-2"></div>
+                <div id="clock"
+                    class="flex justify-center text-xl font-bold contrast-125 text-center mt-2 mb-2 bg-[#3b3a3a] text-white p-2 m-2 rounded-lg">
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+
+        {% block form %}
+        <div class="flex justify-center">
+            <form class="bg-white shadow-sm rounded-xl w-11/12 md:w-3/12 border my-5" action="" method="post">
+                {% csrf_token %}
+
+
+                <div class="flex justify-center p-5">
+                    <img src="http://ubusac1.ubu.ac.th/v01/FrontEnd/SacV2/img/logo_th.png" alt="" class="h-24">
+                </div>
+                <div class="mb-4 px-5">
+                    <input required class="border rounded w-full p-2 text-gray-800 focus:outline-2 focus:outline-blue-500"
+                        id="username" name="username" type="text" placeholder="UBU Wifi Username">
+                </div>
+
+                <div class="mb-4 px-5">
+
+                    <input required class="border rounded w-full p-2 text-gray-800 focus:outline-2 focus:outline-blue-500"
+                        id="password" name="password" type="password" placeholder="UBU Wifi Password">
+
+                </div>
+
+                <div class="mb-4 px-5">
+                    <button class="bg-blue-500 hover:bg-blue-700 w-full text-white p-2 rounded" type="submit">
+                        Sign In
+                    </button>
+                </div>
+
+                <div class="mb-4 px-5">
+                    <a href="#" class="text-blue-500 w-full p-2 rounded">
+                        ลืมรหัสผ่าน (Forgot Password) </a>
+                </div>
+
+
+            </form>
+
+        </div>
+        {% endblock %}
+    </main>
+
+    <div class="bg-[#20409a]">
+
+        <div class="flex justify-center">
+            <div class="p-10 flex-wrap flex justify-center items-center gap-2">
+
+                <div>
+                    <img src="https://www.ubu.ac.th/images/footer_logo.png" alt="">
+                </div>
+                <div class="">
+                    <p class="text-[#6c757d]">2022 © Ubon Ratchathani University, All Rights
+                        Reserved.</p>
+                    <a href="mailto:webmaster@ubu.ac.th" class="text-[#007bff]"> หากมีข้อเสนอแนะหรืออื่นๆโปรดติดต่อ
+                        :
+                        webmaster@ubu.ac.th</a>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="bg-[#171717] justify-center items-center h-32">
+
+            <div class="flex gap-2 justify-center items-center pt-6">
+                <a href="https://www.facebook.com/iamUBU/"
+                    class="outline outline-[0.25px] outline-gray-500 rounded-md h-12 w-12 flex justify-center items-center hover:bg-[#FFCC00] hover:transition hover:duration-500">
+                    <i class="fa-brands fa-facebook-f text-[#6ed9ec] text-[30px]"></i>
+                </a>
+
+                <a href="https://www.youtube.com/@ubonratchathaniuniversity6547"
+                    class="outline outline-[0.25px] outline-gray-500 rounded-md h-12 w-12 flex justify-center items-center hover:bg-[#FFCC00] hover:transition hover:duration-500">
+                    <i class="fa-brands fa-youtube text-[#6ed9ec] text-[30px]"></i>
+                </a>
+
+                <a href="https://www.instagram.com/ubonratchathaniuniversity/"
+                    class="outline outline-[0.25px] outline-gray-500 rounded-md h-12 w-12 flex justify-center items-center hover:bg-[#FFCC00] hover:transition hover:duration-500">
+                    <i class="fa-brands fa-instagram text-[#6ed9ec] text-[30px]"></i>
+                </a>
+
+                <a href="https://twitter.com/ubonuniversity"
+                    class="outline outline-[0.25px] outline-gray-500 rounded-md h-12 w-12 flex justify-center items-center hover:bg-[#FFCC00] hover:transition hover:duration-500">
+                    <i class="fa-brands fa-twitter text-[#6ed9ec] text-[30px]"></i>
+                </a>
+
+                <a href="https://www.tiktok.com/@mo_ubon"
+                    class="outline outline-[0.25px] outline-gray-500 rounded-md h-12 w-12 flex justify-center items-center hover:bg-[#FFCC00] hover:transition hover:duration-500">
+                    <i class="fa-brands fa-tiktok text-[#6ed9ec] text-[30px]"></i>
+                </a>
+            </div>
+
+            <div class="flex justify-center items-center mt-6">
+                <p class="text-[#FFCC00] text-xs">
+                    <a href="#">
+                        นโยบายคุ้มครองข้อมูลส่วนบุคคล (Privacy Policy)</a> | <a href="#">ข้อตกลงด้านสิทธิ์การใช้งาน
+                    </a>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    function updateTime() {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+        var day = now.getDate();
+        var month = now.getMonth() + 1; // เพิ่ม 1 เนื่องจากเดือนเริ่มจาก 0
+        var year = now.getFullYear();
+
+        // กำหนดรูปแบบให้กับเวลา
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        // กำหนดรูปแบบให้กับวันที่และเดือน
+        var thaiMonths = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+        var thaiDay = ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"];
+
+        var thaiDateString = "วัน" + thaiDay[now.getDay()] + "ที่ " + day + " " + thaiMonths[month - 1] + " พ.ศ. " + (year + 543);
+
+        var timeString = hours + ' : ' + minutes + ' : ' + seconds;
+
+        // แสดงเวลาและวันที่ที่ได้ใน div ที่มี id="clock"
+        document.getElementById('date').innerHTML = thaiDateString;
+        document.getElementById('clock').innerHTML = timeString;
+    }
+
+    // เรียกฟังก์ชัน updateTime() เพื่ออัปเดตเวลาทุกๆ 1 วินาที
+    setInterval(updateTime, 1000);
+
+    // เรียกใช้ฟังก์ชันเพื่อให้เวลาแสดงทันทีเมื่อหน้าเว็บโหลด
+    updateTime();
+</script>
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
+<script>
+    document.getElementById("closeModal").onclick = function () {
+        document.getElementById("myModal").classList.add("hidden");
+    };
+</script>
+<script>
+    document.addEventListener("click", function (event) {
+
+        document.getElementById("myModal").classList.add("hidden");
+    });
+</script>
+
+</html>
