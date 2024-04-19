@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from officers.models import Events
 
 def index(request):
     if request.method == 'GET':
@@ -21,4 +22,13 @@ def index(request):
     return render(request,'index.html')
 
 def list_events(request):
-    return render(request,'mainapp/list.html')
+    event = Events.objects.all()
+    return render(request,'mainapp/list.html',{
+        'event':event
+    })
+
+def event_detail(request,id):
+    event = Events.objects.get(pk=id)
+    return render(request,'mainapp/event_detail.html',{
+        'event':event
+    })

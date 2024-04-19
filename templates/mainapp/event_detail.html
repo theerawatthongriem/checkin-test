@@ -1,0 +1,93 @@
+{% extends 'index.html' %}
+
+{% load thai_datetime %}
+
+
+{% block topic %}
+
+{% endblock %}
+
+{% block clock %}
+
+{% endblock %}
+
+{% block form %}
+
+<div class="flex justify-center mt-10">
+    <div class="w-auto border shadow-lg rounded-lg">
+        <div class="md:flex gap-5">
+            <img src="{{ event.poster.url }}" alt="" class="h-64 m-2 rounded-lg">
+            <div class="m-2 mr-10">
+                <div class="my-2 flex">
+                    <p class="font-light">รหัสกิจกรรม : </p>
+                    <p class="mx-2 font-bold">{{ event.id }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">ชื่อกิจกรรม / โครงการ : </p>
+                    <p class="mx-2 font-bold">{{ event.name }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">ปีการศึกษา : </p>
+                    <p class="mx-2 font-bold">{{ event.id }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">สังกัด : </p>
+                    <p class="mx-2 font-bold">{{ event.id }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">ด้าน : </p>
+                    <p class="mx-2 font-bold">{{ event.id }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">วันที่เปิดรับสมัคร : </p>
+                    <p class="mx-2 font-bold">{{ event.id }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">จำนวนเป้าหมาย : </p>
+                    <p class="mx-2 font-bold">{{ event.quantity_people }} คน</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">วันที่จัดกิจกรรม : </p>
+                    <p class="mx-2 font-bold">{{ event.time_start|thai_datetime }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">วันสิ้นสุดกิจกรรม : </p>
+                    <p class="mx-2 font-bold">{{ event.time_end|thai_datetime }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">สถานที่จัด : </p>
+                    <p class="mx-2 font-bold">{{ event.id }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">ผู้รับผิดชอบโครงการ : </p>
+                    <p class="mx-2 font-bold">{{ event.id }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">ที่ปรึกษาโครงการ : </p>
+                    <p class="mx-2 font-bold">{{ event.id }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">คำอธิบาย / คุณลักษณะ : </p>
+                    <p class="mx-2 font-bold">{{ event.id }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">การเปิดรับ : </p>
+                    <p class="mx-2 font-bold">{{ event.id }}</p>
+                </div>
+                <div class="my-2 flex">
+                    <p class="font-light">สถานะโครงการ : </p>
+                    <p class="mx-2 font-bold">{{ event.id }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center font-semibold text-lg m-2">ผู้เข้าร่วม</div>
+        <div class="flex justify-center font-semibold text-lg m-2">
+            <p class="border p-2 w-fit rounded-lg">0 / {{ event.quantity_people }} คน</p>
+        </div>
+    </div>
+</div>
+<div class="flex justify-center my-10">
+    <a href="" class="text-xl bg-blue-700 text-white hover:bg-blue-800 p-2 rounded-md hover:shadow-xl border">สมัครเข้าร่วม</a>
+</div>
+
+{% endblock %}

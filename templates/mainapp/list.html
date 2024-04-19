@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 
 {% block topic %}
-<div class="justify-center flex">
+<div class="justify-center flex mt-10">
     <p class="text-xl w-11/12 md:w-3/12 p-2 rounded-lg text-center shadow-md"> ประกาศกิจกรรม </p>
 </div>
 {% endblock %}
@@ -19,5 +19,19 @@
 
 
 {% block form %}
+
+<div class="grid md:grid-cols-4 gap-4 m-5 md:m-10">
+
+    {% for o in '12345' %}
+    {% for i in event %}
+    <a href="{% url 'event_detail' i.id %}" class="hover:scale-105 hover:duration-700">
+    <div class="w-full border rounded-lg shadow-lg overflow-hidden">
+        <img src="{{ i.poster.url }}" alt="" class="h-32 w-full object-cover">
+        <p class="p-2 text-center">{{ i.name }}</p>
+    </div>
+    </a>
+    {% endfor %}
+    {% endfor %}
+</div>
 
 {% endblock %}
